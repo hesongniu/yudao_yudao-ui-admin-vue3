@@ -5,10 +5,11 @@ import type { Dayjs } from 'dayjs';
 export interface Contact {
           id: number; // 编号
           name?: string; // 名字
-          sex?: boolean; // 性别
+          sex?: number; // 性别
           birthday?: string | Dayjs; // 出生年
           description?: string; // 简介
           avatar: string; // 头像
+          ext: string; // 扩展信息
   }
 
 // demo联系人 API

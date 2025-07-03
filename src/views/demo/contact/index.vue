@@ -25,7 +25,7 @@
           class="!w-240px"
         >
           <el-option
-            v-for="dict in getBoolDictOptions(DICT_TYPE.SYSTEM_USER_SEX)"
+            v-for="dict in getIntDictOptions(DICT_TYPE.SYSTEM_USER_SEX)"
             :key="dict.value"
             :label="dict.label"
             :value="dict.value"
@@ -60,6 +60,15 @@
           end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]"
           class="!w-220px"
+        />
+      </el-form-item>
+      <el-form-item label="扩展信息" prop="ext">
+        <el-input
+          v-model="queryParams.ext"
+          placeholder="请输入扩展信息"
+          clearable
+          @keyup.enter="handleQuery"
+          class="!w-240px"
         />
       </el-form-item>
       <el-form-item>
@@ -129,6 +138,7 @@
         :formatter="dateFormatter"
         width="180px"
       />
+      <el-table-column label="扩展信息" align="center" prop="ext" />
       <el-table-column label="操作" align="center" min-width="120px">
         <template #default="scope">
           <el-button
@@ -164,7 +174,7 @@
 </template>
 
 <script setup lang="ts">
-import { getBoolDictOptions, DICT_TYPE } from '@/utils/dict'
+import { getIntDictOptions, DICT_TYPE } from '@/utils/dict'
 import { isEmpty } from '@/utils/is'
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
@@ -189,7 +199,8 @@ const queryParams = reactive({
   birthday: [],
   description: undefined,
   avatar: undefined,
-  createTime: []
+  createTime: [],
+  ext: undefined
 })
 const queryFormRef = ref() // 搜索的表单
 const exportLoading = ref(false) // 导出的加载中

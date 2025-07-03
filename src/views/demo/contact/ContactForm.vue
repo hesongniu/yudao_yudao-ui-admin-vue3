@@ -13,7 +13,7 @@
       <el-form-item label="性别" prop="sex">
         <el-radio-group v-model="formData.sex">
           <el-radio
-            v-for="dict in getBoolDictOptions(DICT_TYPE.SYSTEM_USER_SEX)"
+            v-for="dict in getIntDictOptions(DICT_TYPE.SYSTEM_USER_SEX)"
             :key="dict.value"
             :label="dict.value"
           >
@@ -35,6 +35,9 @@
       <el-form-item label="头像" prop="avatar">
         <el-input v-model="formData.avatar" placeholder="请输入头像" />
       </el-form-item>
+      <el-form-item label="扩展信息" prop="ext">
+        <el-input v-model="formData.ext" placeholder="请输入扩展信息" />
+      </el-form-item>
     </el-form>
     <template #footer>
       <el-button @click="submitForm" type="primary" :disabled="formLoading">确 定</el-button>
@@ -43,7 +46,7 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import { getBoolDictOptions, DICT_TYPE } from '@/utils/dict'
+import { getIntDictOptions, DICT_TYPE } from '@/utils/dict'
 import { ContactApi, Contact } from '@/api/demo/contact'
 
 /** demo联系人 表单 */
@@ -62,7 +65,8 @@ const formData = ref({
   sex: undefined,
   birthday: undefined,
   description: undefined,
-  avatar: undefined
+  avatar: undefined,
+  ext: undefined
 })
 const formRules = reactive({
   name: [{ required: true, message: '名字不能为空', trigger: 'blur' }],
@@ -122,7 +126,8 @@ const resetForm = () => {
     sex: undefined,
     birthday: undefined,
     description: undefined,
-    avatar: undefined
+    avatar: undefined,
+    ext: undefined
   }
   formRef.value?.resetFields()
 }
