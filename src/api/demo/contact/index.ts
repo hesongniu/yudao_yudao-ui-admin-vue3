@@ -10,6 +10,7 @@ export interface Contact {
           description?: string; // 简介
           avatar: string; // 头像
           ext: string; // 扩展信息
+          remark: string; // 备注
   }
 
 // demo联系人 API

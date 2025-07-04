@@ -71,6 +71,15 @@
           class="!w-240px"
         />
       </el-form-item>
+      <el-form-item label="备注" prop="remark">
+        <el-input
+          v-model="queryParams.remark"
+          placeholder="请输入备注"
+          clearable
+          @keyup.enter="handleQuery"
+          class="!w-240px"
+        />
+      </el-form-item>
       <el-form-item>
         <el-button @click="handleQuery"><Icon icon="ep:search" class="mr-5px" /> 搜索</el-button>
         <el-button @click="resetQuery"><Icon icon="ep:refresh" class="mr-5px" /> 重置</el-button>
@@ -139,6 +148,7 @@
         width="180px"
       />
       <el-table-column label="扩展信息" align="center" prop="ext" />
+      <el-table-column label="备注" align="center" prop="remark" />
       <el-table-column label="操作" align="center" min-width="120px">
         <template #default="scope">
           <el-button
@@ -200,7 +210,8 @@ const queryParams = reactive({
   description: undefined,
   avatar: undefined,
   createTime: [],
-  ext: undefined
+  ext: undefined,
+  remark: undefined
 })
 const queryFormRef = ref() // 搜索的表单
 const exportLoading = ref(false) // 导出的加载中

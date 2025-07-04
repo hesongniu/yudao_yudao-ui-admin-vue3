@@ -38,6 +38,9 @@
       <el-form-item label="扩展信息" prop="ext">
         <el-input v-model="formData.ext" placeholder="请输入扩展信息" />
       </el-form-item>
+      <el-form-item label="备注" prop="remark">
+        <el-input v-model="formData.remark" placeholder="请输入备注" />
+      </el-form-item>
     </el-form>
     <template #footer>
       <el-button @click="submitForm" type="primary" :disabled="formLoading">确 定</el-button>
@@ -66,7 +69,8 @@ const formData = ref({
   birthday: undefined,
   description: undefined,
   avatar: undefined,
-  ext: undefined
+  ext: undefined,
+  remark: undefined
 })
 const formRules = reactive({
   name: [{ required: true, message: '名字不能为空', trigger: 'blur' }],
@@ -127,7 +131,8 @@ const resetForm = () => {
     birthday: undefined,
     description: undefined,
     avatar: undefined,
-    ext: undefined
+    ext: undefined,
+    remark: undefined
   }
   formRef.value?.resetFields()
 }
